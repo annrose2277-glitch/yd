@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Yagna Dhruva '26</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Color System */
+            --bg-void: #150404;
+            --bg-maroon-deep: #2b0808;
+            --bg-maroon: #3d0808;
+            --bg-maroon-light: #5c1e1e;
+            --accent-rust: #a8321f;
+            --accent-rose: #a84850;
+            --gold-light: #dbb69c;
+            --gold-mid: #c9964f;
+            --gold-deep: #8a5a34;
+            --text-cream: #f2e4d8;
+            --text-muted: #b89a8c;
+
+            /* Gradients */
+            --grad-gold: linear-gradient(135deg, var(--gold-light), var(--gold-mid), var(--gold-deep));
+            --grad-maroon: radial-gradient(circle at center, var(--bg-maroon), var(--bg-void));
+            --grad-card: linear-gradient(160deg, var(--bg-maroon-deep) 0%, transparent 100%);
+
+            /* Transitions */
+            --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-void);
+            background-image: var(--grad-maroon);
+            background-attachment: fixed;
+            color: var(--text-cream);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Typography */
+        h1, h2, h3, .logotype {
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+        }
+
+        .gold-text {
+            background: var(--grad-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: var(--gold-mid);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-label::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--grad-gold);
+            opacity: 0.5;
+        }
+
+        /* SVG Patterns & Watermarks */
+        .watermark-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            max-width: 600px;
+            z-index: -1;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .mandala-corner {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .corner-tl { top: -20px; left: -20px; }
+        .corner-tr { top: -20px; right: -20px; transform: rotate(90deg); }
+        .corner-bl { bottom: -20px; left: -20px; transform: rotate(-90deg); }
+        .corner-br { bottom: -20px; right: -20px; transform: rotate(180deg); }
+
+        /* Hero Section */
+        header {
+            padding: 4rem 1.5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .fest-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(168, 50, 31, 0.15);
+            border: 1px solid var(--accent-rust);
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gold-light);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(4px);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: clamp(0.85rem, 3vw, 1.1rem);
+            color: var(--text-muted);
+            font-style: italic;
+            letter-spacing: 0.05em;
+        }
+
+        /* Quick Action Bar */
+        .quick-bar {
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+            display: flex;
+            gap: 0.75rem;
+            padding: 0 1.5rem;
+            margin-top: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-pill {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s var(--ease-out);
+            border: 1px solid var(--gold-deep);
+            background: var(--bg-maroon-deep);
+            color: var(--gold-light);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-pill.primary {
+            background: var(--grad-gold);
+            color: var(--bg-void);
+            border: none;
+        }
+
+        .btn-pill:active {
+            transform: scale(0.96);
+        }
+
+        /* Contact Section */
+        .container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .contact-group {
+            margin-bottom: 3.5rem;
+        }
+
+        .contact-card {
+            background: var(--grad-card);
+            border: 1px solid rgba(219, 182, 156, 0.15);
+            border-radius: 16px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s var(--ease-out), border-color 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: rgba(219, 182, 156, 0.4);
+        }
+
+        .contact-info h3 {
+            font-size: 1.1rem;
+            color: var(--text-cream);
+            letter-spacing: 0.02em;
+        }
+
+        .contact-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .contact-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .icon-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(219, 182, 156, 0.2);
+            color: var(--gold-mid);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            background: rgba(219, 182, 156, 0.1);
+            border-color: var(--gold-mid);
+            color: var(--gold-light);
+        }
+
+        /* FAQ Accordion */
+        .accordion {
+            margin-top: 4rem;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid rgba(219, 182, 156, 0.1);
+            overflow: hidden;
+        }
+
+        .accordion-trigger {
+            width: 100%;
+            padding: 1.25rem 0;
+            background: none;
+            border: none;
+            color: var(--text-cream);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .accordion-trigger span {
+            padding-right: 2rem;
+        }
+
+        .accordion-icon {
+            font-size: 1.25rem;
+            color: var(--gold-mid);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s var(--ease-out);
+        }
+
+        .accordion-content p {
+            padding: 0 0 1.25rem 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 200px;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 1.5rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(219, 182, 156, 0.05);
+            margin-top: 4rem;
+        }
+
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.3;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .institute-line {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            opacity: 0.6;
+            letter-spacing: 0.05em;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s var(--ease-out);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .ember-streak {
+            position: fixed;
+            bottom: -50px;
+            width: 100vw;
+            height: 200px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                transition: none;
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Watermark SVG -->
+    <div class="watermark-container">
+        <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#dbb69c" />
+                    <stop offset="50%" stop-color="#c9964f" />
+                    <stop offset="100%" stop-color="#8a5a34" />
+                </linearGradient>
+            </defs>
+            <!-- Outer Ring -->
+            <circle cx="200" cy="200" r="180" stroke="url(#goldGrad)" stroke-width="2" />
+            <!-- Inner Ring -->
+            <circle cx="200" cy="200" r="140" stroke="url(#goldGrad)" stroke-width="1" stroke-dasharray="4 8" />
+            
+            <!-- Diya/Flame Pattern (Triangles) -->
+            <g id="flames">
+                <!-- JavaScript will populate this or we can hand-code a few -->
+                <polygon points="200,10 190,35 210,35" fill="url(#goldGrad)" opacity="0.6" />
+                <polygon points="200,390 190,365 210,365" fill="url(#goldGrad)" opacity="0.6" transform="rotate(180 200 200)" />
+                <polygon points="390,200 365,190 365,210" fill="url(#goldGrad)" opacity="0.6" />
+                <polygon points="10,200 35,190 35,210" fill="url(#goldGrad)" opacity="0.6" transform="rotate(180 200 200)" />
+            </g>
+
+            <!-- Stylized Calligraphic Glyphs (Hand-crafted abstract representation of YD wordmark) -->
+            <path d="M140 220C140 190 160 160 200 160C240 160 260 190 260 220" stroke="url(#goldGrad)" stroke-width="4" stroke-linecap="round" />
+            <path d="M170 240L200 200L230 240" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M160 180C180 170 220 170 240 180" stroke="url(#goldGrad)" stroke-width="2" opacity="0.6" stroke-linecap="round" />
+            <circle cx="200" cy="210" r="45" stroke="url(#goldGrad)" stroke-width="1.5" stroke-dasharray="2 6" />
+            <path d="M200 130V150M200 250V270M120 200H140M260 200H280" stroke="url(#goldGrad)" stroke-width="1" opacity="0.5" />
+        </svg>
+    </div>
+
+    <!-- 
+        NOTE: WhatsApp links (wa.me) currently use the same mobile numbers as the call links (tel:). 
+        Swap these out if dedicated WhatsApp Business numbers are provided later. 
+    -->
+
+    <!-- Mandala Corners -->
+    <svg class="mandala-corner corner-tl" viewBox="0 0 100 100" fill="none" stroke="url(#goldGrad)">
+        <circle cx="0" cy="0" r="80" stroke-width="0.5" />
+        <circle cx="0" cy="0" r="60" stroke-width="0.5" />
+        <path d="M0 40Q20 40 20 0M0 60Q40 60 40 0M0 80Q60 80 60 0" stroke-width="0.5" />
+    </svg>
+    <svg class="mandala-corner corner-tr" viewBox="0 0 100 100" fill="none" stroke="url(#goldGrad)">
+        <circle cx="0" cy="0" r="80" stroke-width="0.5" />
+        <path d="M0 40Q20 40 20 0M0 60Q40 60 40 0M0 80Q60 80 60 0" stroke-width="0.5" />
+    </svg>
+
+    <header class="reveal">
+        <div class="fest-badge">14th Edition · Oct 8-10 · LBSITW Poojappura</div>
+        <h1 class="gold-text">Yagna Dhruva '26</h1>
+        <p class="tagline">Aarambham: A Legacy Beyond, A Future Unwritten</p>
+    </header>
+
+    <div class="quick-bar reveal">
+        <a href="tel:+919778139242" class="btn-pill primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call Now
+        </a>
+        <a href="https://wa.me/919778139242" class="btn-pill">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            WhatsApp
+        </a>
+    </div>
+
+    <main class="container">
+        
+        <!-- Corporate Relations -->
+        <section class="contact-group reveal">
+            <div class="section-label">CORPORATE RELATIONS</div>
+            
+            <div class="contact-card">
+                <div class="contact-info">
+                    <h3>Adithya Hemand</h3>
+                    <p>Lead Coordinator</p>
+                </div>
+                <div class="contact-actions">
+                    <a href="tel:+919778139242" class="icon-btn" aria-label="Call Adithya">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </a>
+                    <a href="https://wa.me/919778139242" class="icon-btn" aria-label="WhatsApp Adithya">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-info">
+                    <h3>Gauri Krishna K S</h3>
+                    <p>Relations Officer</p>
+                </div>
+                <div class="contact-actions">
+                    <a href="tel:+918089539925" class="icon-btn" aria-label="Call Gauri">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </a>
+                    <a href="https://wa.me/918089539925" class="icon-btn" aria-label="WhatsApp Gauri">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Yagna Event Coordinators -->
+        <section class="contact-group reveal">
+            <div class="section-label">YAGNA EVENT COORDINATORS</div>
+            
+            <div class="contact-card">
+                <div class="contact-info">
+                    <h3>Riya Mary Vinson</h3>
+                    <p>Event Lead</p>
+                </div>
+                <div class="contact-actions">
+                    <a href="tel:+919188218501" class="icon-btn" aria-label="Call Riya">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </a>
+                    <a href="https://wa.me/919188218501" class="icon-btn" aria-label="WhatsApp Riya">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-info">
+                    <h3>Tessy Angelina Victor</h3>
+                    <p>Technical Coordinator</p>
+                </div>
+                <div class="contact-actions">
+                    <a href="tel:+917356539805" class="icon-btn" aria-label="Call Tessy">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </a>
+                    <a href="https://wa.me/917356539805" class="icon-btn" aria-label="WhatsApp Tessy">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dhruva Event Coordinators -->
+        <section class="contact-group reveal">
+            <div class="section-label">DHRUVA EVENT COORDINATORS</div>
+            
+            <div class="contact-card">
+                <div class="contact-info">
+                    <h3>Sreelekshmi J</h3>
+                    <p>Cultural Lead</p>
+                </div>
+                <div class="contact-actions">
+                    <a href="tel:+916282434823" class="icon-btn" aria-label="Call Sreelekshmi J">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </a>
+                    <a href="https://wa.me/916282434823" class="icon-btn" aria-label="WhatsApp Sreelekshmi J">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-info">
+                    <h3>S Srilekshmi Warrier</h3>
+                    <p>Arts Coordinator</p>
+                </div>
+                <div class="contact-actions">
+                    <a href="tel:+918921290205" class="icon-btn" aria-label="Call S Srilekshmi Warrier">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </a>
+                    <a href="https://wa.me/918921290205" class="icon-btn" aria-label="WhatsApp S Srilekshmi Warrier">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="accordion reveal">
+            <div class="section-label">FREQUENTLY ASKED QUESTIONS</div>
+            
+            <div class="accordion-item">
+                <button class="accordion-trigger">
+                    <span>How do I register for events?</span>
+                    <div class="accordion-icon">+</div>
+                </button>
+                <div class="accordion-content">
+                    <p>Registration for all technical and cultural events can be done through our official website or via the registration desks on campus during the fest days.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-trigger">
+                    <span>What are the fest dates?</span>
+                    <div class="accordion-icon">+</div>
+                </button>
+                <div class="accordion-content">
+                    <p>Yagna Dhruva '26 will be held from October 8th to October 10th, 2026, at LBS Institute of Technology for Women, Poojappura.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-trigger">
+                    <span>Is there a registration fee?</span>
+                    <div class="accordion-icon">+</div>
+                </button>
+                <div class="accordion-content">
+                    <p>Individual event fees vary. Please check the specific event details on our website or brochure for accurate pricing.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-trigger">
+                    <span>How can we sponsor the event?</span>
+                    <div class="accordion-icon">+</div>
+                </button>
+                <div class="accordion-content">
+                    <p>For sponsorship queries, please contact our Corporate Relations team directly via the 'Call Now' button or WhatsApp link above.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="reveal">
+        <svg class="footer-logo" viewBox="0 0 400 400" fill="none" stroke="url(#goldGrad)">
+            <circle cx="200" cy="200" r="180" stroke-width="1" />
+            <circle cx="200" cy="200" r="140" stroke-width="0.5" stroke-dasharray="2 4" />
+            <path d="M150 200C150 170 170 150 200 150C230 150 250 170 250 200" stroke-width="2" />
+        </svg>
+        <div class="footer-links">
+            <a href="https://instagram.com/yagnadhruva">Instagram</a>
+            <a href="#">LBSITW Website</a>
+            <a href="#">Brochure</a>
+        </div>
+        <p class="institute-line">LBS Institute of Technology for Women, Poojappura, Trivandrum</p>
+        <p class="institute-line" style="margin-top: 0.5rem; opacity: 0.4;">© 2026 Yagna Dhruva. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Animated Embers -->
+    <svg class="ember-streak" preserveAspectRatio="none" viewBox="0 0 1000 200">
+        <path d="M-100 150 Q250 50 500 150 T1100 150" fill="none" stroke="url(#emberGrad)" stroke-width="1" opacity="0.3">
+            <animate attributeName="stroke-dashoffset" from="2000" to="0" dur="15s" repeatCount="indefinite" />
+        </path>
+        <defs>
+            <linearGradient id="emberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="transparent" />
+                <stop offset="50%" stop-color="#a8321f" />
+                <stop offset="100%" stop-color="transparent" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <script>
+        // Intersection Observer for Entrance Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Accordion Logic
+        document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const item = trigger.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close other items
+                document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Add flame triangles to the watermark dynamically for precision
+        const flamesGroup = document.getElementById('flames');
+        const numFlames = 12;
+        for (let i = 0; i < numFlames; i++) {
+            if (i % 3 === 0) continue; // Skip the ones we hand-coded (0, 3, 6, 9)
+            const angle = (i * 360) / numFlames;
+            const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+            polygon.setAttribute("points", "200,10 192,30 208,30");
+            polygon.setAttribute("fill", "url(#goldGrad)");
+            polygon.setAttribute("opacity", "0.4");
+            polygon.setAttribute("transform", `rotate(${angle} 200 200)`);
+            flamesGroup.appendChild(polygon);
+        }
+    </script>
+</body>
+</html>
